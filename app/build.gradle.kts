@@ -8,10 +8,12 @@ android {
     namespace = "com.bignerdranch.android.photogallery"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.bignerdranch.android.photogallery"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = 25
+        targetSdk = 34
+        compileSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -34,16 +36,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
+/*    buildFeatures {
         viewBinding = true
-    }
+    }*/
 }
 
 dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
-    implementation("androidx.work:work-runtime:2.8.1")
+    implementation("androidx.work:work-runtime:2.7.1")
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
     implementation("com.google.code.gson:gson:2.8.5")
@@ -63,3 +65,4 @@ dependencies {
     implementation ("androidx.room:room-runtime:2.5.0")
     kapt("androidx.room:room-compiler:2.5.0")
 }
+

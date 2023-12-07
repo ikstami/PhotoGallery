@@ -29,4 +29,5 @@ class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app
         mutableSearchTerm.value = query
     }
 
+
 }

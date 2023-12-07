@@ -34,7 +34,6 @@ import java.util.concurrent.TimeUnit
 
 private const val TAG = "PhotoGalleryFragment"
 private const val POLL_WORK = "POLL_WORK"
-
 class PhotoGalleryFragment : Fragment() {
     private lateinit var photoGalleryViewModel: PhotoGalleryViewModel
     private lateinit var photoRecyclerView: RecyclerView
@@ -77,8 +76,10 @@ class PhotoGalleryFragment : Fragment() {
         }
         val toggleItem = menu.findItem(R.id.menu_item_toggle_polling)
         val isPolling = QueryPreferences.isPolling(requireContext())
-        val toggleItemTitle = if (isPolling) { R.string.stop_polling
-        } else { R.string.start_polling
+        val toggleItemTitle = if (isPolling) {
+            R.string.stop_polling
+        } else {
+            R.string.start_polling
         }
         toggleItem.setTitle(toggleItemTitle)
 
@@ -92,15 +93,13 @@ class PhotoGalleryFragment : Fragment() {
             }
             R.id.menu_item_toggle_polling -> {
                 val isPolling = QueryPreferences.isPolling(requireContext())
-                if (isPolling) {
-                    WorkManager.getInstance().cancelUniqueWork(POLL_WORK)
+                if (isPolling) { WorkManager.getInstance().cancelUniqueWork(POLL_WORK)
                     QueryPreferences.setPolling(requireContext(), false)
                 } else {
                     val constraints =
                         Constraints.Builder().setRequiredNetworkType(NetworkType.UNMETERED)
                         .build()
-                    val periodicRequest =
-                        PeriodicWorkRequest
+                    val periodicRequest = PeriodicWorkRequest
                             .Builder(PollWorker::class.java, 15, TimeUnit.MINUTES)
                             .setConstraints(constraints)
                             .build()
